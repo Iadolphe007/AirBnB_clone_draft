@@ -63,6 +63,8 @@ $
 <p>user@ubuntu:~/AirBnB$ ./console.py</p>
 
 </div>
+<br>
+<br>
 <div>
 <p>user@ubuntu:~/AirBnB$ ./console.py $ echo "create BaseModel" | ./console.py</p>
 <p>(hbnb)</p>
