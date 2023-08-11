@@ -10,12 +10,12 @@
 <p>The interface of the application is just like the Bash shell except that this has a limited number of accepted commands that were solely defined for the purposes of the usage of the AirBnB website.</p>
 <p>This command line interpreter serves as the frontend of the web app where users can interact with the backend which was developed with python OOP programming.</p>
 <p>Some of the commands available are:</p>
-<li>
-<ul>show</ul>
-<ul>create</ul>
-<ul>destroy</ul>
-<ul>count</ul>
-</li>
+<ul>
+<li>show</li>
+<li>create</li>
+<li>destroy</li>
+<li>count</li>
+</ul>
 
 <h3>How to use it</h3>
 <h4> <strong>interactive mode</strong></h4>
@@ -23,8 +23,8 @@
 $ ./console.py
 (hbnb) help
 
-Documented commands (type help <topic>):
-========================================
+<p>Documented commands (type help <topic>):</p>
+</p>========================================</p>
 EOF  help  quit
 
 (hbnb) 
@@ -37,8 +37,8 @@ $
 $ echo "help" | ./console.py
 (hbnb)
 
-Documented commands (type help <topic>):
-========================================
+<p>Documented commands (type help <topic>):</p>
+<p>========================================</p>
 EOF  help  quit
 (hbnb) 
 $
@@ -48,9 +48,10 @@ $
 $ cat test_help | ./console.py
 (hbnb)
 
-Documented commands (type help <topic>):
-========================================
+<p>Documented commands (type help <topic>):</p>
+<p>========================================</p>
 EOF  help  quit
 (hbnb) 
 $
 </h4>
+
