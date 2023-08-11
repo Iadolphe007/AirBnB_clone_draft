@@ -2,6 +2,7 @@
 """class that defines common attribute"""
 
 import uuid
+from models import storage
 from datetime import datetime
 
 
@@ -23,6 +24,7 @@ class BaseModel:
             self.id = str(uui.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new()
 
     def __str__(self):
         """return string representation"""
@@ -32,6 +34,7 @@ class BaseModel:
     def save(self):
         """update time with current datetime"""
         self.updated_at = datetime.datetime.now
+        storage.save()
 
     def to_dict(self):
         """return dixt containing key/values"""
