@@ -69,18 +69,18 @@ class HBNBCommand(cmd.Cmd):
                     setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
 
+    def do_EOF(self, line):
+        """handle EOF command"""
+        print()
+        return True
+
+    def do_quit(self, line):
+        """Quit command to exit the program"""
+        return True
+
     def emptyline(self):
         """empty line + ENTER"""
         pass
-
-    def do_EOF(self, line):
-        """handle EOF"""
-        print()
-        return true
-
-    def do_quit(self, line):
-        """exit program command"""
-        return true
 
     def do_create(self, line):
         """create a new instance"""
@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             if args[0] not in storage.classes():
                 print("** class doesn't exist **")
-            elif len(args) == 1:
+            elif len(args) < 2:
                 print("** instance id missing **")
             else:
                 class_name = args[0]
@@ -122,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             if args[0] not in storage.classes():
                 print("** class doesn't exist **")
-            elif len(args) == 1:
+            elif len(args) < 2:
                 print("** instance id missing **")
             else:
                 key = "{}.{}".format(words[0], words[1])
@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 new_l = [str(obj) for key, obj in storage.all().items()
-                         if type(obj).__name__ == words[0]]
+                         if type(obj).__name__ == args[0]]
                 print(new_l)
         else:
             new_list = [str(obj) for key, obj in storage.all().items()]

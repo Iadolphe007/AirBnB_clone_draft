@@ -7,13 +7,6 @@ JSON file to instances"""
 import json
 import os
 import datetime
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.Amenity import Amenity
-from models.plece import Place
-from models.Review import Review
 
 
 class FileStorage:
@@ -23,7 +16,7 @@ class FileStorage:
 
     def all(self):
         """return dictionary object"""
-        return FileStorage.__object
+        return FileStorage.__objects
 
     def new(self, obj):
         """return dict obj"""
@@ -33,7 +26,7 @@ class FileStorage:
     def save(self):
         """serializes __objects to the JSON file"""
         serialized = {}
-        for key, value in FileStorage.__object.items():
+        for key, value in FileStorage.__objects.items():
             serialized[key] = value.to_dict()
             with open(FileStorage.__file_path, 'w') as file:
                 file.write(json.dumps(serialized))
@@ -51,6 +44,15 @@ class FileStorage:
     def classes(self):
         """Returns a dictionary of valid
         classes and their references"""
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
+
         classes = {
                 "BaseModel": BaseModel,
                 "User": User,
@@ -75,7 +77,7 @@ class FileStorage:
                     "first_name": str,
                     "last_name": str
                     },
-                "State": {"name:" str},
+                "State": {"name": str},
                 "City": {
                     "state_id": str,
                     "name": str

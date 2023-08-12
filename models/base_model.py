@@ -21,10 +21,10 @@ class BaseModel:
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
-            self.id = str(uui.uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new()
+            storage.new(self)
 
     def __str__(self):
         """return string representation"""
@@ -33,7 +33,7 @@ class BaseModel:
 
     def save(self):
         """update time with current datetime"""
-        self.updated_at = datetime.datetime.now
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
