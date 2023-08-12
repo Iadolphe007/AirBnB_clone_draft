@@ -6,6 +6,14 @@ JSON file to instances"""
 
 import json
 import os
+import datetime
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.Amenity import Amenity
+from models.plece import Place
+from models.Review import Review
 
 
 class FileStorage:
@@ -39,3 +47,19 @@ class FileStorage:
             obj_dict = {key: self.classes()[v["__class__"]](**v)
                         for key, value in obj_dict.items()}
             FileStorage.__objects = obj_dict
+
+    def classes(self):
+        """Returns a dictionary of valid
+        classes and their references"""
+        classes = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review}
+                }
+        return classes
+
+        
