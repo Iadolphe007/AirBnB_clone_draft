@@ -1,45 +1,50 @@
 #!/usr/bin/python3
-"""class that defines common attribute"""
-
-import uuid
-from models import storage
+""" Definition of a Class called BaseModel """
 from datetime import datetime
+from uuid import uuid4
+import models
 
 
 class BaseModel:
-    """class where other classes inherit"""
+    """ Constructor for the BaseModel class. """
+
     def __init__(self, *args, **kwargs):
-        """initialise instance attribute"""
-        if kwargs is not None and kwargs != {}:
-            for key in kwargs:
-                if key == "created_at":
-                    self.__dict__["created_at"] = datetime.strptime(
-                            kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                elif key == "updated_at":
-                    self.__dict__["updated_at"] = datetime.strptime(
-                            kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                else:
-                    self.__dict__[key] = kwargs[key]
+        """ Construct a new BaseModel object. """
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                elif key == 'updated_at':
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == 'created_at':
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                if 'id' not in kwargs.keys():
+                    self.id = str(uuid4())
+                if 'created_at' not in kwargs.keys():
+                    self.created_at = datetime.now()
+                if 'updated_at' not in kwargs.keys():
+                    self.updated_at = datetime.now()
+                setattr(self, key, value)
         else:
-            self.id = str(uui.uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            storage.new()
+            self.updated_at = self.created_at
+            models.storage.new(self)
 
     def __str__(self):
-        """return string representation"""
-        return "[{}] ({}) {}".\
-            format(type(self).__name__, self.id, self.__dict__)
+        """ Return a string representation of the BaseModel object. """
+        return('[' + type(self).__name__ + '] (' + str(self.id) +
+               ') ' + str(self.__dict__))
 
     def save(self):
-        """update time with current datetime"""
-        self.updated_at = datetime.datetime.now
-        storage.save()
+        """ Save the BaseModel object. """
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
-        """return dixt containing key/values"""
-        my_dict = self.__dict__.copy()
-        my_dict["__class__"] = type(self).__name__
-        my_dict["created_at"] = my_dict["created_at"].isoformat()
-        my_dict["updated_at"] = my_dict["updated_at"].isoformat()
-        return my_dict
+        """ Return a dictionary representing the BaseModel object. """
+        aux_dict = self.__dict__.copy()
+        aux_dict['__class__'] = self.__class__.__name__
+        aux_dict['created_at'] = self.created_at.isoformat()
+        aux_dict['updated_at'] = self.updated_at.isoformat()
+        return aux_dict
