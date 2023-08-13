@@ -1,4 +1,4 @@
-<h1>Air BnB Clone Project</h1>
+<h1>Air BnB_Clone Project</h1>
 
 <h3>Project Description</h3>
 <br>
@@ -72,6 +72,8 @@ $
 <p>(hbnb)</p>
 <p>user@ubuntu:~/AirBnB$ ./console.py<p>
 </div>
+
+
 <h3>this project was done by</h3>
 <h3>Uchechukwu Madumere</h3>
 <h3>IMANISHIMWE ADOLPHE</h3>
