@@ -73,6 +73,6 @@ $
 <p>user@ubuntu:~/AirBnB$ ./console.py<p>
 </div>
 <h3>this project was done by</h3>
-<h3>Uchechukwu Madumere</h3>
-<h3>IMANISHIMWE ADOLPHE</h3>
+<h4>Uchechukwu Madumere</h4>
+<h4>IMANISHIMWE ADOLPHE</h4>
 
